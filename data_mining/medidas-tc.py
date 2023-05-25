@@ -16,32 +16,20 @@ for x in range(1,len(p)):
     data.append(p[x])
 
 print(data)
-
-
 if len(data)< 20:
-
-    y = 0
-    counter = 0
     ## CALCULO DE MODA
-    results = [0,0]
-    while y < len(data):
-        for x in range(len(data)):
-            if data[y] == data[x]:
-                
-                counter = counter + 1 
-        if counter > 1:
-            if counter > results[1]:
-                results[0], results[1] = data[y],counter
-            elif counter == results[1] and data[y]!=results[0]:
-                print('MULTIMODAL CON: \t', data[y])
-                break
-        
-        
-        
-
-
-        counter = 0
-        y = y + 1
+    max_valor = 2
+    moda = []
+    for x in range (len(data)):
+        counter = 0 
+        for i in range(len(data)):
+            if data[x] == data[i]:
+                counter = counter + 1
+        if  counter >= max_valor:
+            max_valor = counter
+            if counter == max_valor and (data[x] not in moda):
+                moda.append(data[x])
+                 
     
 
     ##CALCULO DE MEDIANA
@@ -58,21 +46,17 @@ if len(data)< 20:
     
 
     print('VARIANZA: \t',math.sqrt(desv))
-    print('MODA:\t', results[0])
+    print('MODA(S) : ', moda)
     print('MEDIA:\t', mediana)
 
+    data_sort = sorted(data)
     if len(data)%2 == 0:
         position = len(data)/ 2 
-        data_sort = sorted(data)
-        print(data_sort)
-        value = (data_sort[int(position)] + data_sort[int(position) + 1]) / 2
+        value = (data_sort[int(position-1)] + data_sort[int(position)]) / 2
         print('MEDINA :\t', value) 
     else:
         position= ((len(data)+1) / 2) +1
-        data_sort= sorted(data)
-        print(data_sort)
         print('MEDIANA:\t', data_sort[int(position)])
-
 
 else:
     print('excede la cantidad de datos requeridos')
