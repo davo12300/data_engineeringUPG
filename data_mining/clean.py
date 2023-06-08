@@ -1,8 +1,5 @@
 import openpyxl
 
-
-
-
 ##acceso al documento
 doc= openpyxl.load_workbook("pesos.xlsx")
 ##acceso a la hoja
@@ -21,28 +18,28 @@ for x in range(1,len(p)):
 
 ## PROMEDIO
 suma = 0
+count = 0
 for y in range(len(data)):  
     if data[y] is None:
-        suma = suma 
+        suma = suma
+        count = count + 1  
     else:
         suma = suma + data[y]
 promedio= suma/ len(data)
 
-for e in range(len(data)):  
-    if data[e] is None:
-        data[e] = round(promedio,2)
+if count == 0:
+    print("no hay datos faltantes")
 
+else:
+    
+    for e in range(len(data)):  
+        if data[e] is None:
+            data[e] = round(promedio,2)
 
-print(data)
+for row_idx, cell_value in enumerate(data):
+    hoja.cell(row=row_idx + 2, column=1, value=cell_value)
 
-workbook = openpyxl.Workbook()
-sheet = workbook.active
-
-
-for row_idx, cell_value in enumerate(data, start=1):
-    sheet.cell(row=row_idx, column=1, value=cell_value)
-
-workbook.save("archivo.xlsx")
+    doc.save("pesos.xlsx")
 
 
 
