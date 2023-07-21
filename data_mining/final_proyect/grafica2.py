@@ -21,8 +21,6 @@ for row in hoja.iter_rows():
     cantidad.append(c)
     municipio.append(d)
 
-
-
 #ELIMINAR PRIMERA FILA
 
 years.remove(years[0])
@@ -62,12 +60,15 @@ info = {
 }
 df = pd.DataFrame(info)
 
-print(df)
-ptl.barh(df['Municipios'],df['Cantidad de Accidentes'] , color = ['#8B0000'])
-ptl.title('Victimas de accidentes 2019')
+umbral = 5
+# Crear una lista para almacenar los colores de las barras
+colores = ['#008000' if cantidad < umbral else '#8B0000' for cantidad in df['Cantidad de Accidentes']]
+# Crear la gráfica de barras horizontales con los colores personalizados
+ptl.barh(df['Municipios'], df['Cantidad de Accidentes'], color=colores)
+# Etiquetas y título
+ptl.xlabel('Cantidad de Accidentes')
+ptl.ylabel('Municipios')
+ptl.title('Víctimas de accidentes 2019')
+# Mostrar la gráfica
 ptl.show()
 
-print(accidentes)
-
-
-print(data_municipios)
