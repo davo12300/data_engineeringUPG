@@ -20,3 +20,5 @@ En resumen, la fórmula de la regresión lineal simple es una representación ma
 
 Formula para calcular pendiente e intersección:
 
+![Formula](formuladeregresion.png)
+
